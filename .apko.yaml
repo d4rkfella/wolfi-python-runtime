@@ -1,0 +1,17 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+  packages:
+    - ca-certificates-bundle
+    - wolfi-baselayout
+    - tzdata
+    - catatonit
+    - python-3.12
+
+environment:
+  PATH: "/app/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  SSL_CERT_FILE: /etc/ssl/certs/ca-certificates.crt
+  PYTHONUNBUFFERED: 1
+  PYTHONDONTWRITEBYTECODE: 1
