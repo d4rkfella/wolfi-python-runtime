@@ -48,6 +48,7 @@ jobs:
       - uses: d4rkfella/actions/vul-scans@main
         id: scans
         with:
+          RUN_SNYK: false
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
