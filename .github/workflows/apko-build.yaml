@@ -51,6 +51,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          image: ${{ steps.apko.outputs.digest-index }}
+          image: ${{ steps.apko.outputs.digest }}
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           UPLOAD_GITHUB_CODE: true
