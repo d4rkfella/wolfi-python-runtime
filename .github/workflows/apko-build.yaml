@@ -45,7 +45,7 @@ jobs:
           build-repository-append: https://packages.darkfellanetwork.com
           keyring-append: https://packages.darkfellanetwork.com/melange.rsa.pub
   
-      - uses: distroless/actions/vul-scans@main
+      - uses: d4rkfella/actions/vul-scans@main
         id: scans
         with:
           registry: ghcr.io
