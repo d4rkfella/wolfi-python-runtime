@@ -45,27 +45,12 @@ jobs:
           build-repository-append: https://packages.darkfellanetwork.com
           keyring-append: https://packages.darkfellanetwork.com/melange.rsa.pub
   
-      - name: Generate Trivy Vulnerability Report
-        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # master
+      - uses: distroless/actions/vul-scans@main
+        id: scans
         with:
-          image-ref: ${{ steps.apko.outputs.digest }}
-          output: trivy-report.json
-          format: json
-          exit-code: 0
-          vuln-type: 'os,library'
-
-      - name: Upload Vulnerability Scan Results
-        uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4.6.1
-        with:
-          name: trivy-report
-          path: trivy-report.json
-          retention-days: 30
-      
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # master
-        with:
-          image-ref: ${{ steps.apko.outputs.digest }}
-          format: 'table'
-          exit-code: '1'
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          image: ${{ steps.apko.outputs.digest }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          UPLOAD_GITHUB_CODE: true
