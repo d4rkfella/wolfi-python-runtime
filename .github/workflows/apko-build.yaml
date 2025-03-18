@@ -15,9 +15,6 @@ jobs:
       packages: write
       contents: read
       attestations: write
-    env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}
     
     steps:
       - name: Harden the runner (Audit all outbound calls)
